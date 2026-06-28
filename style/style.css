@@ -1,0 +1,217 @@
+:root{
+    --gray: rgb(58, 58, 60);
+    --yellow: rgb(181, 159, 59);
+    --green: rgb(83, 141, 78);
+    --background: rgb(18, 18, 19);
+    --letter-background: rgb(18, 18, 19);
+    --letter-color: white;
+    --letter-border: rgb(58, 58, 60);
+    --keyboard-background: gray;
+    --leaderboard-text-color: rgb(210, 210, 210); 
+
+    --guess-box-gap: 0.3rem;
+    --keyboard-gap: 0.4rem;
+
+}
+
+h1{
+    color: var(--letter-color);
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+header{
+    border-bottom: 0.05rem;
+    border-color: gray;
+    border-style: solid;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+}
+
+body{
+    background-color: var(--background);
+}
+
+.view-container{
+    margin: auto;
+    width: 50%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: var(--guess-box-gap)
+}
+.letter-row{
+    margin: auto;
+    display: flex;
+    width: 21rem;
+    flex-direction: row;
+    gap: var(--guess-box-gap);
+}
+
+.letter{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border: 0.15rem, solid, var(--letter-border);
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 2rem;
+    width: 3.7rem;
+    height: 3.7rem;
+    color: var(--letter-color);
+    text-transform: capitalize;
+    background-color: var(--letter-background);
+}
+
+.letter-row.letter-shake{
+    animation-name: letter-shake;
+    animation-duration: 0.5s;
+}
+
+.letter.letter-flip{
+    animation-name: letter-flip;
+    animation-duration: 0.5s;
+}
+
+@keyframes letter-shake{
+    0% { transform: translateX(0) }
+    15% { transform: translateX(5px) }
+    30% { transform: translateX(0) }
+    45% { transform: translateX(5px) }
+    60% { transform: translateX(0) }
+    75% { transform: translateX(5px) }
+    90% { transform: translateX(0) }
+    100% { transform: translateX(5px) }
+}
+
+@keyframes letter-flip {
+  0% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+.letter[data-state="present"]{
+    background-color: var(--yellow);
+    border-color: var(--yellow);
+}
+
+.letter[data-state="correct"]{
+    background-color: var(--green);
+    border-color: var(--green);
+}
+
+.letter[data-state="absent"]{
+    background-color: var(--gray);
+    border-color: var(--gray);
+}
+
+.keyboard{
+    padding-top: 1rem;
+    margin: auto;
+    width: 50%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: var(--keyboard-gap);
+}
+
+.keyboard-row{
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    gap: var(--keyboard-gap);
+}
+
+.keyboard-button{
+    height: 3.75rem;
+    width: 2.75rem;
+    border: 0;
+    border-radius: 4px;
+    font-size: 1.25rem;
+    font-weight: bold;
+    background-color: var(--keyboard-background);
+    text-transform: capitalize;
+    color: var(--letter-color);
+}
+
+.keyboard-button[data-state="present"]{
+    background-color: var(--yellow);
+}
+
+.keyboard-button[data-state="correct"]{
+    background-color: var(--green);
+}
+
+.keyboard-button[data-state="absent"]{
+    background-color: var(--gray);
+}
+
+[aria-disabled="true"]:not(.plus-size){
+    opacity: 0.5;
+}
+
+.plus-size{
+    height: 3.75rem;
+    width: 4.325rem;
+    font-size: 0.75rem;
+    text-transform:uppercase;
+}
+
+.player-information{
+    margin: auto;
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.info-item{
+    flex: 1;
+    white-space: nowrap;
+}
+
+.game-over-container{
+    position: absolute;
+    padding: 2rem;
+    background-color: var(--background);
+    border: 0.15rem, solid, var(--letter-border);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -80%);
+}
+
+.game-over-stats{
+    display: flex;
+    flex-direction: column;
+}
+
+.game-over-title{
+    color: var(--letter-color);
+    font-size: 2.5rem;
+}
+
+.game-over-text{
+    color: var(--leaderboard-text-color);
+    font-size: 2rem;
+    margin: 0;
+    text-align: center;
+}
+
+.game-over-button{
+    border: 0;
+    background-color: var(--letter-color);
+    margin: auto;
+    width: 12rem;
+    height: 3rem;
+    color: var(--background);
+    font-size: 1.5rem;
+    margin-top: 2rem;
+}

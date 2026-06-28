@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Wordle Blitz</title>
+    <link rel="stylesheet" href="style/style.css">
+    <script type="module" src="scripts/Load.js"></script>
+    <script type="module" src="scripts/InputManager.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Wordle Blitz</h1>
+    </header>
+
+    <main>
+        <div class="player-information">
+            <h1 class="life-label info-item"></h1>
+            <h1 class="timer-label info-item">30</h1>
+            <h1 class="score-label info-item">Score: 0</h1>
+        </div>
+        <template class="game-over-template">
+            <div class="game-over-container">
+                <h1 class="game-over-title">GAME OVER</h1>
+                <div class="game-over-stats">
+                    <p class="game-over-text">Final Score: 0000</p>
+                    <p class="game-over-text">Highest Streak: 0</p>
+                    <p class="game-over-text">Most Used Letter: E</p>
+                    <button class="game-over-button">Play Again</button>
+                </div>
+            </div>
+        </template>
+        <div class="game">
+            <div class="view-container">
+                <template class="letter-template">
+                    <div class="letter-row" data-row="0">
+                        <div style="animation-delay: 0ms;" class="letter" data-state="empty"></div>
+                        <div style="animation-delay: 100ms;" class="letter" data-state="empty"></div>
+                        <div style="animation-delay: 200ms;" class="letter" data-state="empty"></div>
+                        <div style="animation-delay: 300ms;" class="letter" data-state="empty"></div>
+                        <div style="animation-delay: 400ms;" class="letter" data-state="empty"></div>
+                    </div>
+                </template>
+            </div>
+            <div class="keyboard">
+                <div class="keyboard-row">
+                    <button type="button" data-key="q" aria-label="q" aria-disabled="false"
+                        class="keyboard-button">q</button>
+                    <button type="button" data-key="w" aria-label="w" aria-disabled="false"
+                        class="keyboard-button">w</button>
+                    <button type="button" data-key="e" aria-label="e" aria-disabled="false"
+                        class="keyboard-button">e</button>
+                    <button type="button" data-key="r" aria-label="r" aria-disabled="false"
+                        class="keyboard-button">r</button>
+                    <button type="button" data-key="t" aria-label="t" aria-disabled="false"
+                        class="keyboard-button">t</button>
+                    <button type="button" data-key="y" aria-label="y" aria-disabled="false"
+                        class="keyboard-button">y</button>
+                    <button type="button" data-key="u" aria-label="u" aria-disabled="false"
+                        class="keyboard-button">u</button>
+                    <button type="button" data-key="i" aria-label="i" aria-disabled="false"
+                        class="keyboard-button">i</button>
+                    <button type="button" data-key="o" aria-label="o" aria-disabled="false"
+                        class="keyboard-button">o</button>
+                    <button type="button" data-key="p" aria-label="p" aria-disabled="false"
+                        class="keyboard-button">p</button>
+                </div>
+                <div class="keyboard-row">
+                    <button type="button" data-key="a" aria-label="a" aria-disabled="false"
+                        class="keyboard-button">a</button>
+                    <button type="button" data-key="s" aria-label="s" aria-disabled="false"
+                        class="keyboard-button">s</button>
+                    <button type="button" data-key="d" aria-label="d" aria-disabled="false"
+                        class="keyboard-button">d</button>
+                    <button type="button" data-key="f" aria-label="f" aria-disabled="false"
+                        class="keyboard-button">f</button>
+                    <button type="button" data-key="g" aria-label="g" aria-disabled="false"
+                        class="keyboard-button">g</button>
+                    <button type="button" data-key="h" aria-label="h" aria-disabled="false"
+                        class="keyboard-button">h</button>
+                    <button type="button" data-key="j" aria-label="j" aria-disabled="false"
+                        class="keyboard-button">j</button>
+                    <button type="button" data-key="k" aria-label="k" aria-disabled="false"
+                        class="keyboard-button">k</button>
+                    <button type="button" data-key="l" aria-label="l" aria-disabled="false"
+                        class="keyboard-button">l</button>
+                </div>
+                <div class="keyboard-row">
+                    <button type="button" data-key="↵" aria-label="enter" aria-disabled="true"
+                        class="keyboard-button plus-size">Enter</button>
+                    <button type="button" data-key="z" aria-label="z" aria-disabled="false"
+                        class="keyboard-button">z</button>
+                    <button type="button" data-key="x" aria-label="x" aria-disabled="false"
+                        class="keyboard-button">x</button>
+                    <button type="button" data-key="c" aria-label="c" aria-disabled="false"
+                        class="keyboard-button">c</button>
+                    <button type="button" data-key="v" aria-label="v" aria-disabled="false"
+                        class="keyboard-button">v</button>
+                    <button type="button" data-key="b" aria-label="b" aria-disabled="false"
+                        class="keyboard-button">b</button>
+                    <button type="button" data-key="n" aria-label="n" aria-disabled="false"
+                        class="keyboard-button">n</button>
+                    <button type="button" data-key="m" aria-label="m" aria-disabled="false"
+                        class="keyboard-button">m</button>
+                    <button type="button" data-key="←" aria-label="backspace" aria-disabled="true"
+                        class="keyboard-button plus-size"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            height="20" viewBox="0 0 24 24" width="20" class="game-icon" data-testid="icon-backspace">
+                            <path fill="white"
+                                d="M22 3H7c-.69 0-1.23.35-1.59.88L0 12l5.41 8.11c.36.53.9.89 1.59.89h15c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H7.07L2.4 12l4.66-7H22v14zm-11.59-2L14 13.41 17.59 17 19 15.59 15.41 12 19 8.41 17.59 7 14 10.59 10.41 7 9 8.41 12.59 12 9 15.59z">
+                            </path>
+                        </svg></button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>
